@@ -28,16 +28,17 @@
 
 <div class="content">
     <div>
+    <p>Puede ir a registrar la asistencia de hoy en <a href="asistencia.php"><b>asistencia</b></a></p>
       <?php 
-        $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha= CURDATE() AND obra = '$obra')");
-        $row = mysqli_fetch_row($verifica);
+        // $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha= CURDATE() AND obra = '$obra')");
+        // $row = mysqli_fetch_row($verifica);
 
-        if($row[0] == "1" ){
-          echo 'La asistencia ya se registró el día de hoy, puede verificarla en la sección <a href="reportes.php><b>reportes</b></a>';
-        }
-        else{
-          echo 'La asistencia no ha sido registrada el día de hoy, puede ir y registrarla en <a href="asistencia.php"><b>asistencia</b></a>';
-        }
+        // if($row[0] == "1" ){
+        //   echo 'La asistencia ya se registró el día de hoy, puede verificarla en la sección <a href="reportes.php><b>reportes</b></a>';
+        // }
+        // else{
+        //   echo 'La asistencia no ha sido registrada el día de hoy, puede ir y registrarla en <a href="asistencia.php"><b>asistencia</b></a>';
+        // }
       ?>
     </div>
   </div>

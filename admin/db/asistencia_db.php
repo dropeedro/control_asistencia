@@ -53,7 +53,7 @@
 
     }
   }
-  catch(Execption $e){
+  catch(Exception $e){
     $error_msg = $e->$getMessage();
   }
  ?>

@@ -1,5 +1,5 @@
 <?php require_once "./vista/vista_superior.php" ?>
-<<?php require_once './db/asistencia_db.php' ?>
+<?php require_once './db/asistencia_db.php' ?>
 
 <!DOCTYPE html>
 <html lang="es">

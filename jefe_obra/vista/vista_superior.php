@@ -7,7 +7,7 @@ session_start();
 $usuario = $_SESSION['username'];
 $id_usuario = $_SESSION['id_usuario'];
 
-echo "SELECT admininfo.* FROM admininfoWHERE username='$usuario' AND admininfo.id='$id_usuario'";
+// echo "SELECT admininfo.* FROM admininfo WHERE username='$usuario' AND admininfo.id='$id_usuario'";
 $consulta = "SELECT admininfo.* FROM admininfo, encargado_obra WHERE username='$usuario' AND admininfo.id='$id_usuario' AND encargado_obra.responsable = admininfo.id";
 $resultado=mysqli_query($conexion,$consulta);
 $array = mysqli_fetch_array($resultado);
