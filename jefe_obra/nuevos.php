@@ -6,15 +6,16 @@
     if(isset($_POST['nuevo_tr'])){
 
       //insertar trabajadores a la base de datos : tabla->trabajadores
-        $result = mysqli_query($conexion, "INSERT INTO trabajadores(tr_rut, tr_nombre, tr_fecha_nacimiento, tr_sexo, tr_direccion, tr_obra, tr_telefono, tr_email, tr_cargo, tr_fecha_ingreso, tr_sueldo_pactado, tr_contratado) values('$_POST[rut]','$_POST[nombre]', '$_POST[fecha_nacimiento]', '$_POST[sexo]', '$_POST[direccion]', '$_POST[obra]','$_POST[telefono]','$_POST[email]', '$_POST[cargo]', '$_POST[fecha_ingreso]', '$_POST[sueldo]', '$_POST[contratado]')");
+        $result = mysqli_query($conexion, "INSERT INTO trabajadores(tr_rut, tr_nombre, tr_fecha_nacimiento, tr_sexo, tr_direccion, tr_obra, tr_telefono, tr_email, tr_cargo, tr_fecha_ingreso, tr_sueldo_pactado, tr_tipo_sueldo, tr_contratado) values('$_POST[rut]','$_POST[nombre]', '$_POST[fecha_nacimiento]', '$_POST[sexo]', '$_POST[direccion]', '$_POST[obra]','$_POST[telefono]','$_POST[email]', '$_POST[cargo]', '$_POST[fecha_ingreso]', '$_POST[sueldo]', '$_POST[tipo_sueldo]' ,'$_POST[contratado]')");
         $success_msg = "Trabajador agregado correctamente.";
         $mensaje=  '<h1'.$result.'</h1>';
+        // echo "INSERT INTO trabajadores(tr_rut, tr_nombre, tr_fecha_nacimiento, tr_sexo, tr_direccion, tr_obra, tr_telefono, tr_email, tr_cargo, tr_fecha_ingreso, tr_sueldo_pactado, tr_tipo_sueldo, tr_contratado) values('$_POST[rut]','$_POST[nombre]', '$_POST[fecha_nacimiento]', '$_POST[sexo]', '$_POST[direccion]', '$_POST[obra]','$_POST[telefono]','$_POST[email]', '$_POST[cargo]', '$_POST[fecha_ingreso]', '$_POST[sueldo]', '$_POST[tipo_sueldo]' ,'$_POST[contratado]')";
 
     }
 
 
   }
-  catch(Execption $e){
+  catch(Exception $e){
     $error_msg =$e->getMessage();
   }
 
@@ -106,14 +107,14 @@
           <label for="input1" class="col-sm-3 control-label">Asignar a obra: </label>
           <div class="col-sm-7">
           <?php 
-              $consulta = mysqli_query($conexion, "select obras.*, admininfo.* from obras, admininfo WHERE obras.id_obra = admininfo.obra_asignada AND admininfo.id = '$id_usuario' " );
+              $consulta = mysqli_query($conexion, "SELECT e.*, o.nombre_obra as nombre_obra FROM encargado_obra e, obras o WHERE responsable = $id_usuario AND o.id_obra = e.obra" );
           ?>  
           <select name="obra" id="input1" class="form-control">
             <option value = "0">Seleccione obra</option>
             <?php
             while($data = mysqli_fetch_array($consulta)){
             ?>
-              <option name="obra" value="<?php echo $data['id_obra']; ?>"><?php echo $data['nombre_obra']; ?></option>
+              <option name="obra" value="<?php echo $data['obra']; ?>"><?php echo $data['nombre_obra']; ?></option>
             <?php 
               }
             ?>
@@ -150,6 +151,15 @@
           <label for="input1" class="col-sm-3 control-label">Sueldo Pactado: </label>
           <div class="col-sm-7">
             <input type="number" name="sueldo"  class="form-control" id="input1" placeholder="Sueldo Pactado" />
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="input1" class="col-sm-3 control-label">Tipo Sueldo: </label>
+          <div class="col-sm-7">
+              <select name='tipo_sueldo' id="tr_tipo_sueldo" class="form-control">
+                <option name='tipo_sueldo' value='1'>Diario</option>
+                <option name='tipo_sueldo' value='2'>Mensual</option>
+              </select>
           </div>
       </div>
       <div class="form-group">

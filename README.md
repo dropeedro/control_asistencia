@@ -1,4 +1,4 @@
-# Control de Asistencia
+# Online Attendance Management System 1.0
 Online Attendance Management System 1.0 is developed in a standard way using  HTML, CSS, PHP and MySQL for course project purpose. :blush:
 ## Requirements
   - PHP 5.3 or higher.

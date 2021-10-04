@@ -115,7 +115,8 @@ catch(Exception $e){
                 <label for="input1" class="col-sm-3 control-label">Seleccionar Trabajador: </label>
                 <div class="col-sm-7">
                         <?php 
-                      $consulta = mysqli_query($conexion, "select obras.*, admininfo.*, trabajadores.* from obras, admininfo, trabajadores WHERE obras.id_obra = admininfo.obra_asignada AND trabajadores.tr_obra = obras.id_obra AND admininfo.id = '$id_usuario' " );
+                      // $consulta = mysqli_query($conexion, "select obras.*, admininfo.*, trabajadores.* from obras, admininfo, trabajadores WHERE obras.id_obra = admininfo.obra_asignada AND trabajadores.tr_obra = obras.id_obra AND admininfo.id = '$id_usuario' " );
+                      $consulta = mysqli_query($conexion, "SELECT e.*, o.nombre_obra as nombre_obra, t.* FROM encargado_obra e, obras o, trabajadores t WHERE responsable = '$id_usuario' AND o.id_obra = e.obra AND t.tr_obra = e.obra; " );
                   ?>  
                   <select name="tr_id" id="input1" class="form-control">
                       <option value='0'>Seleccione...</option>
@@ -201,17 +202,17 @@ catch(Exception $e){
         <td>Obra:</td>
         <td>
         <?php 
-            $consulta = mysqli_query($conexion, 'select * from obras' );
-            $consulta2 = mysqli_query($conexion, "select trabajadores.*, obras.nombre_obra, obras.id_obra from trabajadores, obras WHERE  trabajadores.tr_obra = obras.id_obra AND tr_id = $tr_id" );
+            $consulta = mysqli_query($conexion, "SELECT e.*, o.nombre_obra as nombre_obra FROM encargado_obra e, obras o WHERE responsable = $id_usuario AND o.id_obra = e.obra" );
+            $consulta2 = mysqli_query($conexion, "SELECT e.*, o.nombre_obra as nombre_obra FROM encargado_obra e, obras o WHERE responsable = $id_usuario AND o.id_obra = e.obra" );
             $mostrar = mysqli_fetch_array($consulta2);
         ?>  
         <select name="obra" id="input1" class="form-control">
-          <option name="obra" value = "<?php echo $mostrar['id_obra'] ?>"><?php echo $mostrar['nombre_obra'] ?></option>
+          <option name="obra" value = "<?php echo $mostrar['obra'] ?>"><?php echo $mostrar['nombre_obra'] ?></option>
           <option disabled >------------------</option>
           <?php
           while($m = mysqli_fetch_array($consulta)){
           ?>
-            <option name="obra" value="<?php echo $m['id_obra']; ?>"><?php echo $m['nombre_obra']; ?></option>
+            <option name="obra" value="<?php echo $m['obra']; ?>"><?php echo $m['nombre_obra']; ?></option>
           <?php 
             }
           ?>

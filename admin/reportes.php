@@ -117,10 +117,10 @@
         <input type="submit" name="tr_fecha" class="btn btn-primary " value="Buscar" >
       </form>
       </div>
+      <!-- reporte por obra 
       <div class='center'>
       <form method="post" action="" class="form-horizontal">
 
-      <!-- reporte por obra -->
       <h3>Reporte por obra</h3>
       <label>Seleccione Obra</label>
             <?php 
@@ -158,7 +158,7 @@
     </div>
     <br>
 
-    <br>
+    <br> -->
 
    <?php
 
@@ -192,11 +192,12 @@
 
     }
 
-    if(isset($_POST['asistencia_obra'])){
-      $obra = $_POST['reporte_obra'];
-      $mes = $_POST['mes_obra'];
-      $asistencia_obra = mysqli_query($conexion, "SELECT reportes.*, trabajadores.tr_nombre as nombre FROM reportes,trabajadores WHERE reportes.fecha LIKE '%$mes%' AND trabajadores.tr_obra = '$obra'");
-    }
+    // Asistencia por obra
+    // if(isset($_POST['asistencia_obra'])){
+    //   $obra = $_POST['reporte_obra'];
+    //   $mes = $_POST['mes_obra'];
+    //   $asistencia_obra = mysqli_query($conexion, "SELECT reportes.*, trabajadores.tr_nombre as nombre FROM reportes,trabajadores WHERE reportes.fecha LIKE '%$mes%' AND trabajadores.tr_obra = '$obra'");
+    // }
 
 
     if(isset($_POST['tr_fecha'])){
@@ -243,30 +244,31 @@
     </table>
 
 <?php
-    if(isset($_POST['asistencia_obra'])){
+  // Reporte asistencia por obra
+  //   if(isset($_POST['asistencia_obra'])){
       
 
-      echo "<table class='table table-striped' border='1'>";
-      echo'<thead>';
-      echo'<tr>';
-          echo'<th>Nombre</th>';
-          echo '<th>Total Asistencias</th>';
-          echo '<th>Sueldo</th>';
-          echo '<th>Total a Pagar</th>';
-        echo '</tr>';
-      echo '</thead>';
-      while ($m = mysqli_fetch_array($asistencia_obra)) {
+  //     echo "<table class='table table-striped' border='1'>";
+  //     echo'<thead>';
+  //     echo'<tr>';
+  //         echo'<th>Nombre</th>';
+  //         echo '<th>Total Asistencias</th>';
+  //         echo '<th>Sueldo</th>';
+  //         echo '<th>Total a Pagar</th>';
+  //       echo '</tr>';
+  //     echo '</thead>';
+  //     while ($m = mysqli_fetch_array($asistencia_obra)) {
           
-      echo '<tbody>';
-      echo '<tr>';
-        echo "<td>".$m['nombre']."</td>";
-        echo "<td>".$m['nombre']."</td>";
+  //     echo '<tbody>';
+  //     echo '<tr>';
+  //       echo "<td>".$m['nombre']."</td>";
+  //       echo "<td>".$m['nombre']."</td>";
         
         
-      }
-      echo "</tr></tbody>
-      </table>";
-  }
+  //     }
+  //     echo "</tr></tbody>
+  //     </table>";
+  // }
      ?>
      
     </table>

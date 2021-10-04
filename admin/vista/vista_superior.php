@@ -7,19 +7,23 @@ session_start();
 $usuario = $_SESSION['username'];
 $id_usuario = $_SESSION['id_usuario'];
 
-$consulta = "SELECT admininfo.*, obras.* FROM admininfo, obras WHERE username='$usuario' AND id='$id_usuario' AND obras.id_obra = admininfo.obra_asignada";
+// $consulta = "SELECT admininfo.*, encargado_obra.* FROM admininfo, encargado_obra WHERE username='$usuario' AND id='$id_usuario' AND encargado_obra.responsable = admininfo.id";
+echo "SELECT admininfo.*, encargado_obra.* FROM admininfo, encargado_obra WHERE username='$usuario' AND admininfo.id='$id_usuario' AND encargado_obra.responsable = admininfo.id";
+$consulta = "SELECT admininfo.*, encargado_obra.* FROM admininfo, encargado_obra WHERE username='$usuario' AND admininfo.id='$id_usuario' AND encargado_obra.responsable = admininfo.id;";
 $resultado=mysqli_query($conexion,$consulta);
 $array = mysqli_fetch_array($resultado);
 
 $_SESSION['id_rol'] = $array['id_rol'];
 $_SESSION['nombre'] = $array['nombre'];
 $_SESSION['apellido'] = $array['apellido'];
-$_SESSION['obra'] = $array['obra_asignada'];
+$_SESSION['obra'] = $array['obra'];
 
 $id_rol = $_SESSION['id_rol'];
 $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];
 $obra_asignada = $_SESSION['obra'];
+
+
 
 
 if(!isset($usuario)){

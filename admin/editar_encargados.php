@@ -83,9 +83,9 @@
        $i=0;
 
        //searching students information respected to the particular ID
-       $all_query = mysqli_query($conexion, "select admininfo.*, obras.* from admininfo, obras where id='$encargado' AND admininfo.obra_asignada = obras.id_obra");
+       $all_query = mysqli_query($conexion, "select admininfo.*, obras.* from admininfo, obras where id='$encargado'");
        while ($data = mysqli_fetch_array($all_query)) {
-         $i++;
+        //  $i++;
        
        ?>
 <form action="./db/editar_encargados_db.php" method="post" class="form-horizontal col-md-6 col-md-offset-3">
@@ -96,44 +96,37 @@
               <td>Nombre(s): </td>
               <td><input type="text" class="form-control" name="nombre" value="<?php echo $data['nombre']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Apellido(s): </td>
               <td><input type="text" class="form-control" name="apellido" value="<?php echo $data['apellido']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Nombre de Usuario</td>
               <td><input type="text" class="form-control" name="username" value="<?php echo $data['username']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Contraseña: </td>
               <td><input type="text" class="form-control" name="password" value="<?php echo $data['password']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Confirmar Contraseña: </td>
               <td><input type="text" class="form-control" name="password_confirmar" value="<?php echo $data['password']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Email: </td>
               <td><input type="text" class="form-control" name="email" value="<?php echo $data['email']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Telefono: </td>
               <td><input type="text" name="telefono" class="form-control" value="<?php echo $data['telefono']; ?>"></input></td>
           </tr>
-
           <tr>
               <td>Obra: </td>
               <td>
                         <?php 
                         $consulta = mysqli_query($conexion, 'select * from obras' );
                     ?>  
-                    <select name="obra" id="input1" class="form-control">
+                    <!-- <select name="obra" id="input1" class="form-control">
                       <option name="obra" value= "<?php echo $data['obra_asignada'] ?>"> <?php echo $data['nombre_obra'] ?></option>
                       <?php
                       while($obras = mysqli_fetch_array($consulta)){
@@ -142,18 +135,16 @@
                       <?php 
                         }
                       ?>
-                    </select>
-
+                    </select> -->
+                    <p>Para editar las obras asignadas a este encargado, vaya directamente a la sección <a href="obras.php">"Obras" haciendo click <strong>aquí</strong>.</a> </p>
               </td>
           </tr>
           <input type="hidden" name="id_rol" class="form-control" hidden value="<?php echo $data['id_rol']; ?>">
           <input type="hidden" name="id_encargado" class="form-control" hidden value="<?php echo $data['id']; ?>">
           <tr>
                 <td></td>
-                <td><input type="submit" class="btn btn-primary col-md-3 col-md-offset-7" value="Update" name="done" /></td>
-                
+                <td><input type="submit" class="btn btn-primary col-md-3 col-md-offset-7" value="Update" name="done" /></td>   
           </tr>
-
     </table>
 </form>
      <?php 

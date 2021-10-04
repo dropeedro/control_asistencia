@@ -7,23 +7,26 @@ session_start();
 $usuario = $_SESSION['username'];
 $id_usuario = $_SESSION['id_usuario'];
 
-$consulta = "SELECT admininfo.*, obras.* FROM admininfo, obras WHERE username='$usuario' AND id='$id_usuario' AND obras.id_obra = admininfo.obra_asignada";
+echo "SELECT admininfo.* FROM admininfoWHERE username='$usuario' AND admininfo.id='$id_usuario'";
+$consulta = "SELECT admininfo.* FROM admininfo, encargado_obra WHERE username='$usuario' AND admininfo.id='$id_usuario' AND encargado_obra.responsable = admininfo.id";
 $resultado=mysqli_query($conexion,$consulta);
 $array = mysqli_fetch_array($resultado);
+
+// echo $array.'<br>';
 
 $_SESSION['id_rol'] = $array['id_rol'];
 $_SESSION['nombre'] = $array['nombre'];
 $_SESSION['apellido'] = $array['apellido'];
 $_SESSION['id_usuario'] = $array['id'];
-$_SESSION['obra'] = $array['nombre_obra'];
-$_SESSION['obra_asignada'] = $array['obra_asignada'];
+// $_SESSION['obra'] = $array['obra'];
+// $_SESSION['obra_asignada'] = $array['obra_asignada'];
 
 $id_rol = $_SESSION['id_rol'];
 $id_usuario = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];
-$obra = $_SESSION['obra'];
-$obra_asignada = $_SESSION['obra_asignada'];
+// $obra = $_SESSION['obra'];
+// $obra_asignada = $_SESSION['obra_asignada'];
 
 if(!isset($usuario)){
   header("location: ../index.php");

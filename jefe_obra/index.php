@@ -29,7 +29,7 @@
 <div class="content">
     <div>
       <?php 
-        $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha= CURDATE() AND obra = '$obra_asignada')");
+        $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha= CURDATE() AND obra = '$obra')");
         $row = mysqli_fetch_row($verifica);
 
         if($row[0] == "1" ){

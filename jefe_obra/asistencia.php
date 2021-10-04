@@ -55,7 +55,7 @@
 
     }
   }
-  catch(Execption $e){
+  catch(Exception $e){
     $error_msg = $e->$getMessage();
   }
  ?>
@@ -106,14 +106,14 @@
       <div class="form-group">
           <label>Seleccione Obra</label>
           <?php 
-              $consulta = mysqli_query($conexion, "select obras.*, admininfo.* from obras, admininfo WHERE obras.id_obra = admininfo.obra_asignada AND admininfo.id = '$id_usuario' ");
+              $consulta = mysqli_query($conexion, "SELECT e.*, o.nombre_obra as nombre_obra FROM encargado_obra e, obras o WHERE responsable = $id_usuario AND o.id_obra = e.obra;");
           ?>  
           <select name="elegir_obra" id="input1" class="form-control">
             <option value = "0">Seleccione obra</option>
             <?php
             while($data = mysqli_fetch_array($consulta)){
             ?>
-              <option name="<?php echo $data['id_obra']; ?>" value="<?php echo $data['id_obra']; ?>"><?php echo $data['nombre_obra']; ?></option>
+              <option name="<?php echo $data['obra']; ?>" value="<?php echo $data['obra']; ?>"><?php echo $data['nombre_obra']; ?></option>
             <?php 
               }
             ?>
