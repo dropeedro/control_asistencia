@@ -1,7 +1,6 @@
 // console.log('hola')
 $(document).ready(function() {
     $('#tablaAsistencia').DataTable( {
-        "pageLength": 50,
         "columnDefs": [
             {"className": "dt-center", "targets": "_all"}
           ],

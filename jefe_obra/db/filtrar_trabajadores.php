@@ -26,5 +26,5 @@ echo '<option value="0">Seleccione</option>';
 
 while ( $row = $query->fetch_assoc() )
 {
-	echo '<option value="' . $row['tr_id']. '">' . $row['tr_nombre'] . '</option>' . "\n";
+	echo '<option value="' . $row['tr_id']. '">' . ucfirst($row['tr_nombre']) . '</option>' . "\n";
 }

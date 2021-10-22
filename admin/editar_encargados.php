@@ -8,7 +8,7 @@
 <title>Editar Encargado</title>
 <meta charset="UTF-8">
   
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../css/main.css"> -->
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
    

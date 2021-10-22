@@ -64,7 +64,7 @@
             <input type="password" name="password"  class="form-control" id="password" placeholder="Contraseña" />
           </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
           <label  class="col-sm-3 control-label">Asignar a obra: </label>
           <div class="col-sm-7">
           <?php 
@@ -81,7 +81,7 @@
             ?>
           </select>
           </div>
-      </div>
+      </div> -->
 
       <div class="form-group">
           <label  class="col-sm-3 control-label">Telefono: </label>

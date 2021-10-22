@@ -38,6 +38,35 @@
 </style>
 
 </head>
+<?php 
+$query = mysqli_query($conexion,"SELECT * FROM encargado_obra WHERE responsable = $id_usuario");
+while ($i = mysqli_fetch_array($query)) {
+  echo $i['obra'].'<br>';
+}
+echo $id_usuario;
+echo $obra_asignada;
+
+
+// $hoy = getdate();
+// $fecha = date('H:i');
+// echo $fecha;
+// $dia = $hoy['weekday'];
+
+// echo getcwd();
+// // print_r($dia);
+
+// // if($dia == 'Saturday' || $dia == 'Sunday'){
+// if($fecha == '00:44'){
+//   $stat = mysqli_query($conexion, "insert into algo(nombre) values('pedro')");
+//   echo 'hola';
+// }else{
+//   echo 'no';
+// }
+
+// $fechaactual = getdate();
+// print_r($fechaactual);
+// echo "Hoy es: $fechaactual[weekday], $fechaactual[mday] de $fechaactual[month] de $fechaactual[year]";
+?>
 <body>
 <center>
       <h3>Asistencia</h3>
@@ -49,9 +78,8 @@
     <center><p><?php if(isset($att_msg)) echo $att_msg; if(isset($error_msg)) echo $error_msg; ?></p></center> 
     
     <form action="" method="post" class="form-horizontal col-md-4 col-md-offset-4">
-
       <div class="form-group">
-          <label>Seleccione Obra</label>
+          <label>Seleccione Obra: </label>
           <?php 
               $consulta = mysqli_query($conexion, 'select * from obras' );
           ?>  
@@ -65,8 +93,10 @@
               }
             ?>
           </select>
+          <label>Fecha: </label>
+          <input type="date" name="fecha" class="form-control col-md-4 col-md-offset-4">
+          <br>
        </div>
-               
      <input type="submit" id="btnMostrar" class="btn btn-primary col-md-3 col-md-offset-5" value="Mostrar" name="mostrar" />
 
     </form>
@@ -75,7 +105,7 @@
     <form action="./db/asistencia_db.php" method="post">
 
 <div class='container'>
-    <table class="table table-centered table-stripped">
+    <table id='tablaAsistencia' class="table table-centered table-stripped">
       <thead>
         <tr>
         <th scope="col">Id</th>
@@ -84,12 +114,14 @@
           <th scope="col">Obra</th>
           <th scope="col">Sueldo</th>
           <th scope="col">Tipo Sueldo</th>
+          <th scope="col">Fecha</th>
           <th scope="col">Estado</th>
         </tr>
       </thead>
    <?php
 
     if(isset($_POST['mostrar'])){
+    $fecha = $_POST['fecha'];
      $i=0;
      $radio = 0;
      $mostrar_obra = $_POST['elegir_obra'];
@@ -105,11 +137,12 @@
   <body>
      <tr>
        <td><?php echo $data['tr_id']; ?> <input type="hidden" name="tr_id[]" value="<?php echo $data['tr_id']; ?>"> </td>
-       <td><?php echo $data['tr_rut']; ?></td>
-       <td><?php echo $data['tr_nombre']; ?></td>
+       <td><?php echo $data['tr_rut']?></td>
+       <td><?php echo ucfirst($data['tr_nombre']); ?></td>
        <td><?php echo $data['obra']; ?><input type='hidden' name="tr_obra[]" value= "<?php echo $data['tr_obra']?>"></td>
        <td><?php echo $data['sueldo']; ?></td>
        <td><?php echo $data['tipo']; ?></td>
+       <td><input disabled type="date" name= "fecha_asistencia[]" value="<?php echo $fecha; ?> " class="form-control"></td>
        <td>
          <label>Presente: </label>
          <input type="radio" name="tr_estado[<?php echo $radio; ?>]" value="Presente" checked>
@@ -148,6 +181,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.css"/>
+ 
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 

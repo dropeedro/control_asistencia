@@ -16,10 +16,10 @@ include_once ('connect.php');
 
      $id_encargado = mysqli_insert_id($conexion);
 
-      foreach ($obras as $o) {
-        $consulta2 = mysqli_query($conexion, "INSERT INTO encargado_obra(obra, responsable) VALUES('$o', '$id_encargado' )");
-        echo "INSERT INTO encargado_obra(obra, responsable) VALUES('$o', '$id_encargado' )".'<br>';
-      }
+      // foreach ($obras as $o) {
+        // $consulta2 = mysqli_query($conexion, "INSERT INTO encargado_obra(obra, responsable) VALUES('$o', '$id_encargado' )");
+        // echo "INSERT INTO encargado_obra(obra, responsable) VALUES('$o', '$id_encargado' )".'<br>';
+      // }
         
         $att_msg = "Encargado registrado.";
             echo'<script type="text/javascript">

@@ -18,7 +18,8 @@
       foreach ($_POST['tr_estado'] as $i => $tr_estado) {
         
         $tr_id = $_POST['tr_id'][$i];
-        $fecha = date('Y-m-d');
+        // $fecha = date('Y-m-d');
+        $fecha = $_POST['fecha_asistencia'][$i];
         $obra = $_POST['tr_obra'][$i];
 
         $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha='$fecha' AND obra = '$obra' AND tr_id = '$tr_id')");
@@ -41,12 +42,12 @@
         else{
         
         $stat = mysqli_query($conexion, "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha')");
-        
-        $att_msg = "Asistencia Registrada.";
-            echo'<script type="text/javascript">
-            alert("Asistencia Registrada con exito!");
-            window.location.href="../index.php";
-                 </script>';
+        echo "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha')".'<br>';
+        // $att_msg = "Asistencia Registrada.";
+        //     echo'<script type="text/javascript">
+        //     alert("Asistencia Registrada con exito!");
+        //     window.location.href="../index.php";
+        //          </script>';
         //header("Refresh:0; url=index.php");
         }
       }
@@ -54,6 +55,9 @@
     }
   }
   catch(Exception $e){
-    $error_msg = $e->$getMessage();
+    echo'<script type="text/javascript">
+            alert("Error al registrar asistencia, intente nuevamente.");
+            window.location.href="../asistencia.php";
+                 </script>';
   }
  ?>

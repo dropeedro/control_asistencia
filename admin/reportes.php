@@ -6,17 +6,8 @@
 <title>Reportes</title>
 <meta charset="UTF-8">
 
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-   
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-   
-  <link rel="stylesheet" href="styles.css" >
-   
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
 <style>
@@ -229,10 +220,16 @@
            <tr>
              <td><?php echo $data['tr_id']; ?></td>
              <td><?php echo $data['tr_rut']; ?></td>
-             <td><?php echo $data['tr_nombre']; ?></td>
+             <td><?php echo ucfirst($data['tr_nombre']);?></td>
              <td><?php echo $data['tr_obra']; ?></td>
              <td><?php echo $data['fecha']; ?></td>
-             <td><?php echo $data['estado']; ?></td>
+             <td>
+               <?php if($data['estado'] == 'Presente'){ ?>
+                 <span class='badge badge-success'><?php echo $data['estado']; ?></span> 
+                <?php }else{ ?>
+                 <span class='badge badge-danger'><?php echo $data['estado']; ?></span>  
+                 <?php } ?>
+               </td>
            </tr>
         </tbody>
 
@@ -318,7 +315,7 @@
       
       <tr>
           <td>Nombre: </td>
-          <td><?php echo $data['tr_nombre']; ?></td>
+          <td><?php echo ucfirst($data['tr_nombre']);?></td>
       </tr>
       
       <tr>
@@ -412,8 +409,18 @@
   </div>
 
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.2/umd/popper.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.css"/>
+ 
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.js"></script>
+
 <script src="js/reportes.js"></script>
 
 </center>

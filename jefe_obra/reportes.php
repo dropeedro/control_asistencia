@@ -229,7 +229,7 @@
            <tr>
              <td><?php echo $data['tr_id']; ?></td>
              <td><?php echo $data['tr_rut']; ?></td>
-             <td><?php echo $data['tr_nombre']; ?></td>
+             <td><?php echo ucfirst($data['tr_nombre']); ?></td>
              <td><?php echo $data['tr_obra']; ?></td>
              <td><?php echo $data['fecha']; ?></td>
              <td><?php echo $data['estado']; ?></td>
@@ -318,7 +318,7 @@
       
       <tr>
           <td>Nombre: </td>
-          <td><?php echo $data['tr_nombre']; ?></td>
+          <td><?php echo ucfirst($row['tr_nombre']); ?></td>
       </tr>
       
       <tr>

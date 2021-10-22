@@ -81,14 +81,14 @@
      <tr>
        <td><?php echo $data['tr_id']; ?></td>
        <td><?php echo $data['tr_rut']; ?></td>
-       <td><?php echo $data['tr_nombre']; ?></td>
+       <td><?php echo ucfirst($data['tr_nombre']); ?></td>
        <td><?php echo $data['tr_fecha_nacimiento']; ?></td>
        <td><?php echo $data['tr_sexo']; ?></td>
        <td><?php echo $data['tr_direccion']; ?></td>
        <td><?php echo $data['tr_obra']; ?></td>
        <td><?php echo $data['tr_telefono']; ?></td>
        <td><?php echo $data['tr_email']; ?></td>
-       <td><?php echo $data['tr_cargo']; ?></td>
+       <td><?php echo ucfirst($data['tr_cargo']); ?></td>
        <td><?php echo $data['tr_fecha_ingreso']; ?></td>
        <td>$<?php echo number_format($data['tr_sueldo_pactado']); ?></td>
        <td><?php echo $data['tr_contratado']; ?></td>

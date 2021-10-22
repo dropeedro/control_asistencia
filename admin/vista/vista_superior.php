@@ -121,6 +121,7 @@ header{
           <li><a href="obras.php">Obras</a></li>
           <li><a href="asistencia.php">Asistencia</a></li>
           <li><a href="reportes.php">Reportes</a></li>
+          <li><a href="adelantos.php">Adelantos</a></li>
 				<li><a href="#">Trabajadores</a>
 					<ul class="submenu">
               <li><a href="trabajadores.php">Lista Trabajadores</a></li>

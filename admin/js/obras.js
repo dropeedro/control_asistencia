@@ -53,6 +53,13 @@ $(document).on('click','.btnEditar', function(e){
     const encargadoAnterior = document.querySelector('#id_encargado_anterior').value = idEncargado
     console.log(encargadoActual)
     // const nombreActual = document.querySelector('#nombre_obra').value = nombre;
+
+    // if(direccionActual === '' || nombreActual === '' || idActual === '' ){
+    //   const p = document.createElement('p');
+    //   p.textContent = 'El formulario no puede estar vacío';
+
+
+    // }
 });
 
 // const btn = document.querySelector('#editar');
