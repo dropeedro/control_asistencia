@@ -1,10 +1,11 @@
-// console.log('hola')
+
 $(document).ready(function() {
-    $('#tablaAsistencia').DataTable( {
-        "pageLength": 50,
-        "columnDefs": [
-            {"className": "dt-center", "targets": "_all"}
-          ],
+    
+    // $('#tablaAsistencia').DataTable( {
+    //     "pageLength": 50,
+    //     "columnDefs": [
+    //         {"className": "dt-center", "targets": "_all"}
+    //       ],
         // dom: 'Bfrtip'
         // buttons: [
         //     {extend: 'copy', text:'Copiar'}, 
@@ -43,4 +44,4 @@ $(document).ready(function() {
         //   }
         // ]
     } );
-} );
+// } );

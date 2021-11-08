@@ -48,7 +48,7 @@
         //     alert("Asistencia Registrada con exito!");
         //     window.location.href="../index.php";
         //          </script>';
-        //header("Refresh:0; url=index.php");
+        // header("Refresh:0; url=index.php");
         }
       }
 

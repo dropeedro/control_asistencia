@@ -1,9 +1,18 @@
 // console.log('hola')
 $(document).ready(function() {
-    $('#tablaAsistencia').DataTable( {
-        "columnDefs": [
-            {"className": "dt-center", "targets": "_all"}
-          ],
+    const btnMostrar = document.querySelector('#mostrar');
+    btnMostrar.disabled = true;
+
+    const inputFecha = document.querySelector('#fecha');
+    inputFecha.max = new Date().toISOString().split("T")[0];
+    inputFecha.addEventListener('change', () =>{
+        btnMostrar.disabled = false;
+
+    });
+    // $('#tablaAsistencia').DataTable( {
+    //     "columnDefs": [
+    //         {"className": "dt-center", "targets": "_all"}
+    //       ],
         // dom: 'Bfrtip'
         // buttons: [
         //     {extend: 'copy', text:'Copiar'}, 
@@ -42,4 +51,5 @@ $(document).ready(function() {
         //   }
         // ]
     } );
-} );
+// } );
+

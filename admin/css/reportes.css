@@ -1,0 +1,40 @@
+/* .container {
+    width:100%;
+    text-align:center;
+    border: 1px solid;
+}
+
+.left {
+    float:left;
+    width:33%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+*/
+
+
+.center {
+    display: inline-block;
+    margin:0 auto;
+    width:33%;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+/*
+.right {
+    float:right;
+    width:33%;
+    padding-left: 50px;
+    padding-right: 50px;
+} */
+
+.table{
+    text-align: center;
+    position: relative;
+  }
+
+  .texto_fecha{
+    /* font-size: 13px; */
+    font-size: 1vw;
+  }

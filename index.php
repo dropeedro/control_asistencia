@@ -35,7 +35,7 @@ if(isset($_POST['login']))
 				header("location: jefe_obra/index.php");
 			}
 		}else{
-			throw new Exception("Usuario o contraseña incorrectos, intentalo de nuevo!!");
+			throw new Exception("Usuario o contrase&ntilde;a incorrectos, intentalo de nuevo!!");
 			#header("location: index.php");
 			}
 		
@@ -79,66 +79,53 @@ if(isset($_POST['login']))
 <head>
 <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
 
-	<title>Gestión y control de asistencia</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<!-- Latest compiled and minified CSS -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<title>Gesti&oacuten y control de asistencia</title>
+	<!-- <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/es/img/favicon.ico?v=a8def514be8a"> -->
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">	
 	 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<!-- <link rel="stylesheet" href="./css/styles.css" > -->
+	<link rel="stylesheet" href="./css/index.css" >
 	 
-	<link rel="stylesheet" href="styles.css" >
-	 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
 	<center>
+<div class="fondo">
+	<div class="wrapper fadeInDown">
+	<h1>Control y gesti&oacute;n de Asistencia</h1>
 
-<header>
+	<?php
+	if(isset($error_msg))
+	{
+		echo $error_msg;
+	}
+	?>
+	<div id="formContent">
+		<!-- Tabs Titles -->
 
-  <h1>Control y gesti&oacute;n de Asistencia</h1>
+		<!-- Icon -->
+		<div class="fadeIn first">
+		<!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+		</div>
 
-</header>
-
-<h1>Inicia Sesi&oacute;n: </h1>
-
-<?php
-if(isset($error_msg))
-{
-	echo $error_msg;
-}
-?>
-
-<div class="content">
-	<div class="row">
-
-		<form method="post" class="form-horizontal col-md-6 col-md-offset-3">
-			<div class="form-group">
-			    <label for="input1" class="col-sm-3 control-label">Nombre de Usuario: </label>
-			    <div class="col-sm-7">
-			      <input type="text" name="username"  class="form-control" id="input" placeholder="Escribe tu nombre de usuario" />
-			    </div>
-			</div>
-
-			<div class="form-group">
-			    <label for="input1" class="col-sm-3 control-label">Contrase&ntilde;a: </label>
-			    <div class="col-sm-7">
-			      <input type="password" name="password"  class="form-control" id="input1" placeholder="Escribe tu contrase&ntilde;a" />
-			    </div>
-			</div>
-
-
-			<input type="submit" class="btn btn-primary col-md-3 col-md-offset-7" value="Entrar" name="login" />
+		<!-- Login Form -->
+		<form method="post">
+		<input type="text" id="login" class="fadeIn second" name="username" placeholder="Ingrese su nombre de usuario">
+		<input type="text" id="password" class="fadeIn third" name="password" placeholder="Ingrese su contrase&ntilde;a">
+		<input type="submit" class="fadeIn fourth" value="Entrar" name="login">
 		</form>
+
+		<!-- Remind Passowrd -->
+		<!-- <div id="formFooter">
+		<a class="underlineHover" href="#">Forgot Password?</a>
+		</div> -->
+
+	</div>
 	</div>
 </div>
-
 
 
 <!-- <br><br>
@@ -146,5 +133,14 @@ if(isset($error_msg))
 <p><strong>Si no tienes una cuenta, <a href="signup.php">Registrate</a> aquí</strong></p>
  -->
 </center>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+	x = document.querySelector('#password');
+x.setAttribute("type", "password");
+</script>
 </body>
 </html>

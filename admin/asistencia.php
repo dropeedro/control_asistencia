@@ -39,12 +39,12 @@
 
 </head>
 <?php 
-$query = mysqli_query($conexion,"SELECT * FROM encargado_obra WHERE responsable = $id_usuario");
-while ($i = mysqli_fetch_array($query)) {
-  echo $i['obra'].'<br>';
-}
-echo $id_usuario;
-echo $obra_asignada;
+// $query = mysqli_query($conexion,"SELECT * FROM encargado_obra WHERE responsable = $id_usuario");
+// while ($i = mysqli_fetch_array($query)) {
+//   echo $i['obra'].'<br>';
+// }
+// echo $id_usuario;
+// echo $obra_asignada;
 
 
 // $hoy = getdate();
@@ -93,11 +93,12 @@ echo $obra_asignada;
               }
             ?>
           </select>
+          <br>
           <label>Fecha: </label>
-          <input type="date" name="fecha" class="form-control col-md-4 col-md-offset-4">
+          <input type="date" name="fecha" id="fecha" class="form-control col-md-4 col-md-offset-4">
           <br>
        </div>
-     <input type="submit" id="btnMostrar" class="btn btn-primary col-md-3 col-md-offset-5" value="Mostrar" name="mostrar" />
+     <input type="submit" id="btnMostrar" class="btn btn-primary col-md-3 col-md-offset-5" id="mostrar" value="Mostrar" name="mostrar" />
 
     </form>
 
@@ -142,7 +143,7 @@ echo $obra_asignada;
        <td><?php echo $data['obra']; ?><input type='hidden' name="tr_obra[]" value= "<?php echo $data['tr_obra']?>"></td>
        <td><?php echo $data['sueldo']; ?></td>
        <td><?php echo $data['tipo']; ?></td>
-       <td><input disabled type="date" name= "fecha_asistencia[]" value="<?php echo $fecha; ?> " class="form-control"></td>
+       <td><input readonly type="text" name="fecha_asistencia[]" value="<?php echo $fecha; ?> " class="form-control"></td>
        <td>
          <label>Presente: </label>
          <input type="radio" name="tr_estado[<?php echo $radio; ?>]" value="Presente" checked>

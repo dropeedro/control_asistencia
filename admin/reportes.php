@@ -6,110 +6,97 @@
 <title>Reportes</title>
 <meta charset="UTF-8">
 
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/es/img/favicon.ico?v=a8def514be8a">
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="./css/reportes.css">
 </head>
-<style>
-.container {
-    width:100%;
-    text-align:center;
-    border: 1px solid;  
-}
 
-.left {
-    float:left;
-    width:33%;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-.center {
-    display: inline-block;
-    margin:0 auto;
-    width:33%;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-.right {
-    float:right;
-    width:33%;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-</style>
 <body>
 <center>
-
+<h1>Reportes</h1>
+<div class="form-group">
+<select class="form-control center" id="elegir_reporte">
+  <option value="0" selected disabled></option>
+  <option value="1">Reporte Individual</option>
+  <option value="2">Reporte por Obra Mensual</option>
+  <option value="3">Reporte por Obra Diario</option>
+</select>
+</div>
 <div class="row">
   <div class="content">
     <div class="container">
-      <div class='left'>
-      <h3>Reporte Individual</h3>
-      <form method="post" action="" class="form-horizontal">
+      <div id="contenedorReportes">
+          <div id="reporteIndividual">
+              <div class='left'>
+              <h3>Reporte Individual</h3>
+              <form method="post" action="" class="form-horizontal">
 
-      <label>Seleccione Obra</label>
-            <?php 
-                $consulta = mysqli_query($conexion, 'select * from obras' );
-            ?>  
-            <select name="elegir_obra" id="elegir_obra" class="form-control">
-            </select> 
+              <label>Seleccione Obra</label>
+                    <?php 
+                        $consulta = mysqli_query($conexion, 'select * from obras' );
+                    ?>  
+                    <select name="elegir_obra" id="elegir_obra" class="form-control">
+                    </select> 
+                <p>  </p>
+                <label>Trabajador</label>
+                <?php 
+                        $consulta = mysqli_query($conexion, 'select * from trabajadores' );
+                    ?>  
+                    <select name="tr_id" id="tr_id" class="form-control">
+                    </select> 
+                <label>Mes</label>
+                  <select class='form-control' name='mes_asistencia'>
+                    <option name='mes_asistencia' value='2021-01'>Enero</option>
+                    <option name='mes_asistencia' value='2021-02'>Febrero</option>
+                    <option name='mes_asistencia' value='2021-03'>Marzo</option>
+                    <option name='mes_asistencia' value='2021-04'>Abril</option>
+                    <option name='mes_asistencia' value='2021-05'>Mayo</option>
+                    <option name='mes_asistencia' value='2021-06'>Junio</option>
+                    <option name='mes_asistencia' value='2021-07'>Julio</option>
+                    <option name='mes_asistencia' value='2021-08'>Agosto</option>
+                    <option name='mes_asistencia' value='2021-09'>Septiembre</option>
+                    <option name='mes_asistencia' value='2021-10'>Octubre</option>
+                    <option name='mes_asistencia' value='2021-11'>Noviembre</option>
+                    <option name='mes_asistencia' value='2021-12'>Diciembre</option>
+                  </select>
+                  <br>
+                <!-- <input type="text" name="tr_id"> -->
+                <input type="submit" name="tr_btn" class="btn btn-primary " value="Buscar" >
 
-        <p>  </p>
-        <label>Trabajador</label>
-        <?php 
-                $consulta = mysqli_query($conexion, 'select * from trabajadores' );
-            ?>  
-            <select name="tr_id" id="tr_id" class="form-control">
-            </select> 
-        <label>Mes</label>
-          <select class='form-control' name='mes_asistencia'>
-            <option name='mes_asistencia' value='2021-01'>Enero</option>
-            <option name='mes_asistencia' value='2021-02'>Febrero</option>
-            <option name='mes_asistencia' value='2021-03'>Marzo</option>
-            <option name='mes_asistencia' value='2021-04'>Abril</option>
-            <option name='mes_asistencia' value='2021-05'>Mayo</option>
-            <option name='mes_asistencia' value='2021-06'>Junio</option>
-            <option name='mes_asistencia' value='2021-07'>Julio</option>
-            <option name='mes_asistencia' value='2021-08'>Agosto</option>
-            <option name='mes_asistencia' value='2021-09'>Septiembre</option>
-            <option name='mes_asistencia' value='2021-10'>Octubre</option>
-            <option name='mes_asistencia' value='2021-11'>Noviembre</option>
-            <option name='mes_asistencia' value='2021-12'>Diciembre</option>
-          </select>
-          <br>
-        <!-- <input type="text" name="tr_id"> -->
-        <input type="submit" name="tr_btn" class="btn btn-primary " value="Buscar" >
-
-      </form>
+              </form>
+              </div>
+          </div>
+          <div id="reportePorFecha">
+              <div class='right'> 
+                <form method="post" action="" class="form-horizontal">
+                <h3>Reporte por fecha</h3>
+                <label>Seleccione Obra</label>
+                      <?php 
+                          $consulta = mysqli_query($conexion, 'select * from obras' );
+                      ?>  
+                      <select name="elegir_obra" id="input1" class="form-control">
+                        <?php
+                        while($data = mysqli_fetch_array($consulta)){
+                        ?>
+                          <option value="<?php echo $data['id_obra'] ?>"><?php echo $data['nombre_obra'] ?></option>
+                        <?php 
+                          }
+                        ?>
+                      </select> 
+                <p>  </p>
+                  <label>Fecha ( yyyy-mm-dd )</label>
+                  <input type="date" name="fecha" class="form-control">
+                  <br>
+                  <input type="submit" name="tr_fecha" class="btn btn-primary " value="Buscar" >
+                </form>
+              </div>
+          </div>
       </div>
-
-      <div class='right'>
-      <form method="post" action="" class="form-horizontal">
-      <h3>Reporte por fecha</h3>
-      <label>Seleccione Obra</label>
-            <?php 
-                $consulta = mysqli_query($conexion, 'select * from obras' );
-            ?>  
-            <select name="elegir_obra" id="input1" class="form-control">
-              <?php
-              while($data = mysqli_fetch_array($consulta)){
-              ?>
-                <option value="<?php echo $data['id_obra'] ?>"><?php echo $data['nombre_obra'] ?></option>
-              <?php 
-                }
-              ?>
-            </select> 
-      <p>  </p>
-        <label>Fecha ( yyyy-mm-dd )</label>
-        <input type="date" name="fecha" class="form-control">
-        <br>
-        <input type="submit" name="tr_fecha" class="btn btn-primary " value="Buscar" >
-      </form>
-      </div>
-      <!-- reporte por obra 
-      <div class='center'>
+      <div class='center' id="reportePorObra">
       <form method="post" action="" class="form-horizontal">
 
       <h3>Reporte por obra</h3>
@@ -149,7 +136,7 @@
     </div>
     <br>
 
-    <br> -->
+    <br>
 
    <?php
 
@@ -184,18 +171,31 @@
     }
 
     // Asistencia por obra
-    // if(isset($_POST['asistencia_obra'])){
-    //   $obra = $_POST['reporte_obra'];
-    //   $mes = $_POST['mes_obra'];
-    //   $asistencia_obra = mysqli_query($conexion, "SELECT reportes.*, trabajadores.tr_nombre as nombre FROM reportes,trabajadores WHERE reportes.fecha LIKE '%$mes%' AND trabajadores.tr_obra = '$obra'");
-    // }
+    if(isset($_POST['asistencia_obra'])){
+      $obra = $_POST['reporte_obra'];
+      $mes = $_POST['mes_obra'];
+      // $asistencia_obra = mysqli_query($conexion, "SELECT a.*, COUNT(estado) as dias_presente, t.tr_nombre, t.tr_obra,t.              tr_sueldo_pactado, t.tr_tipo_sueldo, tp.tipo_sueldo
+      //                                             FROM asistencia a
+      //                                             INNER JOIN trabajadores t ON t.tr_id = a.tr_id
+      //                                             INNER JOIN tipo_sueldo tp ON tp.id = t.tr_tipo_sueldo
+      //                                             WHERE a.fecha LIKE '%$mes%' AND a.estado = 'Presente' AND a.obra = '$obra'
+      //                                             GROUP BY tr_id;");
+      $asistencia_obra = mysqli_query($conexion, "SELECT a.tr_id, t.tr_nombre, t.tr_sueldo_pactado, t.tr_tipo_sueldo, tp.tipo_sueldo,
+                                              SUM(CASE WHEN estado = 'Presente' THEN 1 ELSE 0 END) AS count_presente,
+                                              SUM(CASE WHEN estado = 'Ausente' THEN 1 ELSE 0 END) AS count_ausente 
+                                              FROM asistencia a
+                                              INNER JOIN trabajadores t ON t.tr_id = a.tr_id
+                                              INNER JOIN tipo_sueldo tp ON tp.id = t.tr_tipo_sueldo
+                                              WHERE fecha LIKE '%$mes%' AND obra = $obra
+                                              GROUP BY tr_id;");
+    }
 
 
     if(isset($_POST['tr_fecha'])){
 
       ?>
 
-    <table class="table table-stripped">
+    <table class="table table-stripped" id="tablaReporteFecha">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -242,36 +242,62 @@
 
 <?php
   // Reporte asistencia por obra
-  //   if(isset($_POST['asistencia_obra'])){
-      
+    if(isset($_POST['asistencia_obra'])){
+      ?>
+      <table id="tablaPorObra" class="table table-centered table-stripped">
+      <thead>
+      <tr>
+          <th>Nombre</th>
+          <th>Días Presente</th>
+          <th>Días Ausente</th>
+          <th>Sueldo</th>
+          <th>Tipo Sueldo</th>
+          <th>Total Correspondiente</th>
+          <th>Total Final a pagar</th>
+          <th>Observaciones</th>
+        </tr>
+      </thead>
+      <?php
+      while ($m = mysqli_fetch_array($asistencia_obra)) {
+          ?>
+       <tbody>
+       <tr>
+         <td><?php echo $m['tr_nombre'] ?></td>
+         <td><span class='badge badge-success'><?php echo $m['count_presente'] ?></span></td> 
+         <td><span class='badge badge-danger'><?php echo $m['count_ausente'] ?></span></td> 
+         <!-- <td>$ <?php echo str_replace(',', '.',number_format($m['tr_sueldo_pactado'])) ?></td> -->
+        <td><?php echo $m['tr_sueldo_pactado'] ?></td> 
+         <td><?php echo $m['tipo_sueldo']?></td>
+        <?php
+        if($m['tr_tipo_sueldo'] == 1){
+          ?>
+          <!-- <td>$ <?php echo str_replace(',', '.',number_format($m['count_presente']* $m['tr_sueldo_pactado'])) ?></td> -->
+          <td><?php echo $m['count_presente']* $m['tr_sueldo_pactado'] ?></td>
+          <?php 
+        }else{
+          ?>
+          <!-- <td>$<?php echo str_replace(',', '.',number_format($m['count_presente'] * ($m['tr_sueldo_pactado']/30))) ?>
+        </td>-->
+        <td><?php echo $m['count_presente'] * ($m['tr_sueldo_pactado']/30) ?></td>
+          <?php
+        }
+        ?>
+        <td><input type="number" class="form-control addField"></td>
+          <td><input type="text" class="form-control addField"></td>
+        <?php
+        
+      }
+      ?>
 
-  //     echo "<table class='table table-striped' border='1'>";
-  //     echo'<thead>';
-  //     echo'<tr>';
-  //         echo'<th>Nombre</th>';
-  //         echo '<th>Total Asistencias</th>';
-  //         echo '<th>Sueldo</th>';
-  //         echo '<th>Total a Pagar</th>';
-  //       echo '</tr>';
-  //     echo '</thead>';
-  //     while ($m = mysqli_fetch_array($asistencia_obra)) {
-          
-  //     echo '<tbody>';
-  //     echo '<tr>';
-  //       echo "<td>".$m['nombre']."</td>";
-  //       echo "<td>".$m['nombre']."</td>";
-        
-        
-  //     }
-  //     echo "</tr></tbody>
-  //     </table>";
-  // }
+      </tr>
+      </tbody>
+      </table>
+      <?php
+  }
      ?>
      
     </table>
-
-
-    <form method="post" action="" class="form-horizontal col-md-6 col-md-offset-3">
+<div id="cuadroReporteIndividual">
     <table class="table table-striped">
 
     <?php
@@ -380,31 +406,51 @@
    
      ?>
     </table>
+
     <?php
     if(isset($_POST['tr_btn'])){
-      echo "<table class='table table-striped' border='1' cellspacing='0'>";
+      ?>
+      <table class="table table-striped" id="tablaReporteIndividual">
+        <?php 
       $fecha = array();
       $estado = array();
       while ($m = mysqli_fetch_array($asistencia_mensual)) {
           $fecha[] = $m['fecha'];
           $estado[] = $m['estado'];
       }
-      echo "<tr>";
-      echo "<td><b>Fecha</b></td>";
+      ?>
+      <thead>
+      <tr>
+      <td><b>Fecha</b></td>
+      <?php
       foreach($fecha as $f) {
-          echo "<td>" . $f . "</td>";
+      ?>
+          <td class="texto_fecha"><?php echo substr($f, 5, 5); ?></td>
+      <?php
       }
-      echo "</tr><tr>";
-      echo "<td><b>Estado</b></td>";
+      ?>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><b>Estado</b></td>
+      <?php
       foreach($estado as $e) {
-          echo "<td>" . $e . "</td>";
+        if($e == 'Presente'){
+          echo "<td><span class='badge badge-success'>" . $e . "</span></td>";
+        }else{
+          echo "<td><span class='badge badge-danger'>" . $e . "</span></td>";
+        }
       }
-      echo "</tr></table>";
-      
+      ?>
+      </tr>
+      </tbody>
+      </table>
+      <button id='btnMostrar' class="btn btn-info">Imprimir</button>
+      <?php
     }
-     
-?>
-  </form>
+     ?>
+     </div>
 
   </div>
 
@@ -417,12 +463,13 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.css"/>
  
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.js"></script>
 
-<script src="js/reportes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<script src="js/reportes.js"></script>
 </center>
 
 </body>

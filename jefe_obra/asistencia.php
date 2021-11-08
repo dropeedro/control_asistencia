@@ -20,10 +20,10 @@
         
         $tr_id = $_POST['tr_id'][$i];
         // $fecha = date('Y-m-d');
-        $fecha = $_POST['fecha_asistencia'][$i];
+        $fecha_asistencia = $_POST['fecha_asistencia'][$i];
         $obra = $_POST['tr_obra'][$i];
 
-        $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha='$fecha' AND obra = '$obra' AND tr_id = '$tr_id')");
+        $verifica = mysqli_query($conexion,"SELECT EXISTS (SELECT *  FROM asistencia WHERE fecha='$fecha_asistencia' AND obra = '$obra' AND tr_id = '$tr_id')");
         $row = mysqli_fetch_row($verifica);
 
         // $max_trabajadores = mysqli_query($conexion, "SELECT COUNT(*) as contar FROM `trabajadores` WHERE tr_obra = 1");
@@ -42,17 +42,16 @@
         }
         else{
         
-        $stat = mysqli_query($conexion, "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha')");
-        echo "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha')";
+        $stat = mysqli_query($conexion, "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha_asistencia')");
+        // echo "insert into asistencia(tr_id,obra,estado,fecha) values('$tr_id','$obra','$tr_estado','$fecha_asistencia')";
         
-        // $att_msg = "Asistencia Registrada.";
-        // echo'<script type="text/javascript">
-        //       alert("Asistencia Registrada con exito!");
-        //       window.location.href="index.php";
-        //       </script>';
-        //header("Refresh:0; url=index.php");
+        $att_msg = "Asistencia Registrada.";
+        echo'<script type="text/javascript">
+              alert("Asistencia Registrada con exito!");
+              window.location.href="index.php";
+              </script>';
+        header("Refresh:0; url=index.php");
         }
-
       }
 
     }
@@ -126,12 +125,13 @@
           </select>
           <br>
           <label>Fecha: </label>
-          <input type="date" class="form-control" name="fecha">
+          <input type="date" class="form-control" id="fecha" name="fecha">
        </div>
                
-     <input type="submit" class="btn btn-primary col-md-3 col-md-offset-5" value="Mostrar" name="mostrar" />
+     <input type="submit" class="btn btn-primary col-md-3 col-md-offset-5" id="mostrar" value="Mostrar" name="mostrar" />
 
     </form>
+    <br>
 
     <div class="content"></div>
     <form action="" method="post">
@@ -174,7 +174,7 @@
        <td><?php echo $data['obra']; ?><input type='hidden' name="tr_obra[]" value= "<?php echo $data['tr_obra']?>"></td>
        <td><?php echo $data['sueldo']; ?></td>
        <td><?php echo $data['tipo']; ?></td>
-       <td><input disabled type="date" name="fecha_asistencia[]" value="<?php echo $fecha; ?>"> </td>
+       <td><input readonly type="text" name="fecha_asistencia[]" value="<?php echo $fecha; ?>" class="form-control"></td>
        <td>
          <label>Presente: </label>
          <input type="radio" name="tr_estado[<?php echo $radio; ?>]" value="Presente" checked>

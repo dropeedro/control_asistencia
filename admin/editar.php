@@ -8,23 +8,21 @@
 <title>Editar Trabajador</title>
 <meta charset="UTF-8">
   
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/es/img/favicon.ico?v=a8def514be8a">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
    
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-   
-  <link rel="stylesheet" href="styles.css" >
-  
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./css/editar_trabajadores.css" >
 
 
 </head>
 <body>
-
 <center>
+
+
 
 <div class="row">
     <div class="content">
@@ -89,11 +87,19 @@
        
        ?>
 <form action="./db/editar_db.php.php" method="post" class="form-horizontal col-md-6 col-md-offset-3">
+<!-- <div class="center">
+  <input type="checkbox" name="estado" class="estado">
+</div> -->
    <table class="table table-striped">
-  
+
+        
           <tr>
             <td>ID: </td>
             <td><?php echo $data['tr_id']; ?></td>
+          </tr>
+          <tr>
+            <td>ID: </td>
+            <td>Inactivo <input type="checkbox" name="estado" class="estado"> Activo</td>
           </tr>
 
           <tr>
@@ -231,8 +237,20 @@
 
   </center>
 <!-- Contents, Tables, Forms, Images ended -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+  var checkedValue = document.querySelector('.estado');
+  checkedValue.checked = true;
+  checkedValue.addEventListener('click', function(){
+    console.log(checkedValue.checked)
+  })
+</script>
 
 </body>
+
 <!-- Menus ended -->
 
 </html>
